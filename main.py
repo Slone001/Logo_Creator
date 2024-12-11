@@ -3,7 +3,7 @@ from data import assets
 import sys
 import math
 
-font_path = "Hitmo2.0-Bold.ttf"
+font_path = "data/files/Hitmo2.0-Bold.ttf"
 
 
 def main():

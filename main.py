@@ -78,6 +78,7 @@ def quader(canvas_width, canvas_height, text: str = "Nimm mich!", font_size: int
 
 def named_logo(logo_list: list):
     # todo: logo text outsourcing in other func
+    # todo: add multithreading
     text_y = 200  # position y, position x will be calculated automatically
     count = 1
     distance = 20
@@ -106,6 +107,15 @@ def named_logo(logo_list: list):
                 break
             font = ImageFont.truetype(font_path, font_size)
 
+            shadow_layer = Image.new("RGBA", logo.size, (0, 0, 0, 0))
+
+            # Calculate shadow offset based on angle and distance
+            shadow_offset_x = int(distance * math.cos(math.radians(angle)))
+            shadow_offset_y = int(distance * math.sin(math.radians(angle)))
+
+            # Measure the text size and calculate position
+
+            # Draw the main text on top of the shadow
             text_overlay = Image.new("RGBA", logo.size, (255, 255, 255, 0))
             text_draw = ImageDraw.Draw(text_overlay)
 
@@ -123,22 +133,15 @@ def named_logo(logo_list: list):
             text_x = (logo_width - text_width) // 2
             text_draw.text((text_x, text_y), text, font=font, fill=(255, 255, 255, 255))
 
-            shadow_layer = Image.new("RGBA", logo.size, (0, 0, 0, 0))
-            shadow_draw = ImageDraw.Draw(shadow_layer)
+            draw = ImageDraw.Draw(shadow_layer)
+            # Draw the shadow text at the offset position
+            shadow_color = (0, 0, 0, 128)  # Semi-transparent black
+            draw.text((text_x + shadow_offset_x, text_y + shadow_offset_y), text, font=font, fill=shadow_color)
 
-            shadow_offset_x = int(distance * math.cos(math.radians(angle)))
-            shadow_offset_y = int(distance * math.sin(math.radians(angle)))
-
-            # Draw the shadow at the offset position
-            shadow_color = (0, 0, 0, 128)  # Semi-transparent black shadow
-            shadow_draw.text(
-                (text_x + shadow_offset_x, text_y + shadow_offset_y),
-                text, font=font, fill=shadow_color
-            )
-
-            # Blur the shadow for smoothness
+            # Apply blur to the shadow for a smoother fade
             shadow_layer = shadow_layer.filter(ImageFilter.GaussianBlur(10))
 
+            # Combine the layers with the logo
             combined = Image.alpha_composite(logo, shadow_layer)
             combined = Image.alpha_composite(combined, text_overlay)
 

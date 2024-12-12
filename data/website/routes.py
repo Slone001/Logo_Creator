@@ -12,7 +12,7 @@ def index():
 
 @bp.route('/seasonLogos')
 def Season_logo():
-    return render_template("Season_logo.html")
+    return render_template("Season_logo_up.html")
 
 
 @bp.route('/upload', methods=['POST'])
@@ -20,13 +20,15 @@ def upload_file():
     if 'file' not in request.files:
         return "No file part in the request.", 400
 
-    file = request.files['file']
+    files = request.files.getlist('file')
+    if not files:
+        return "No files selected.", 400
 
-    if file.filename == '':
-        return "No file selected.", 400
+    saved_files = []
+    for file in files:
+        if file and file.filename != '':
+            filepath = os.path.join("static/uploads", file.filename)
+            file.save(filepath)
+            saved_files.append(filepath)
 
-    # Save the file if it's valid
-    if file:
-        filepath = os.path.join("blueprint_logos/", file.filename)
-        file.save(filepath)
-        return f"File uploaded successfully to {filepath}!"
+    return f"Files uploaded successfully: {', '.join(saved_files)}"

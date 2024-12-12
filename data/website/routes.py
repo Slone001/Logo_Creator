@@ -12,7 +12,12 @@ def index():
 
 @bp.route('/seasonLogos')
 def Season_logo():
-    return render_template("Season_logo_up.html")
+    return render_template("season_logo.html")
+
+
+@bp.route('/seasonLogoup')
+def Season_logo_upload():
+    return render_template("season_logo_up.html")
 
 
 @bp.route('/upload', methods=['POST'])

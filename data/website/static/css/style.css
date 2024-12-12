@@ -1,6 +1,53 @@
-h1 {
-    border: 2px #eee solid;
-    color: brown;
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
     text-align: center;
-    padding: 10px;
 }
+
+
+/* Header container for logo and h1 */
+.header-container {
+    font-family: Arial, sans-serif;
+    display: block;               /* Use flexbox for alignment */
+    align-items: center;         /* Center vertically */
+    justify-content: center;     /* Initially center everything */
+    background-color: #f9f9f9;   /* Optional: Add background for header */
+    padding: 20px;               /* Space around content */
+    position: relative;          /* Allow positioning of the logo */
+    ;
+}
+
+/* Logo styling */
+.logo {
+    position: absolute;          /* Fix the logo to the left side */
+    left: 10px;                  /* Distance from the left edge */
+    display: flex;
+    align-items: center;         /* Center the logo vertically */
+}
+
+.logo img {
+    height: 100px;                /* Adjust logo size */
+                     /* Maintain aspect ratio */
+}
+
+/* H1 Styling */
+.header-container h1 {
+    color: brown;
+    margin: 0;                   /* Remove default margins */
+    text-align: center;
+
+}
+
+.navbar {
+    margin-top: 10px;
+    text-decoration: none;
+    color: blue;
+    text-align: center;
+    display: grid;           /* Enable Grid layout */
+    justify-content: center; /* Center horizontally */
+    gap: 15px;               /* Add space between links */
+    grid-auto-flow: column;  /* Arrange items in a row */
+}
+

@@ -6,12 +6,17 @@
     <title>Designer-Tool</title>
 </head>
     <body>
-        <h1>Designer-Tool</h1>
+        <div class="header-container">
+            <a href="{{ url_for('main.index') }}" class="logo">
+                <img src="{{ url_for('static', filename='img/FL_logo.png') }}" alt="Logo">
+            </a>
+            <h1>Designer-Tool</h1>
+        </div>
 
-        <nav class="navbar navbar-expand-md navbar-light bg-light">
-            <a class="navbar-brand" href="{{ url_for('main.index')}}">FlaskBlog</a>
+        <nav class="navbar">
+            <a class="navbar-brand" href="{{ url_for('main.index')}}">Home-Page</a>
             <a class="navbar-brand" href="{{ url_for('main.Season_logo')}}">Season-Logos</a>
-            <a class="navbar-brand" href="{{ url_for('main.Season_logo_up')}}">Season-Logos/Upload</a>
+            <a class="navbar-brand" href="{{ url_for('main.Season_logo_upload')}}">Season-Logos/Upload</a>
             <div class="collapse navbar-collapse" id="navbarNav">
             </div>
         </nav>

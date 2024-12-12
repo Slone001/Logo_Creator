@@ -1,27 +1,17 @@
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
-from data import assets
+from data import logo_handler
 import sys
 import math
 
 font_path = "data/files/Hitmo2.0-Bold.ttf"
 
 
-def main():
-    logoname = input("Logo name: ")
-    logo = Image.open(logoname).convert("RGBA")
-    new_color = (255, 0, 0, 255)  # Red (R, G, B, A)
-    colored_logo = Image.new("RGBA", logo.size, new_color)
-    logo_with_new_color = Image.composite(colored_logo, logo, logo)
-    logo_with_new_color.save("finished_logos/colored_logo.png")
-    print("Logo color changed and saved as 'colored_logo.png'")
-
-
 def logo_comb(logo_path: list | None = None):
     if logo_path is None:
         logo_path = []
-    for logoname in logo_path:
-        logo = Image.open(logoname).convert("RGBA")
-        logo_name = logoname.split("\\")[-1]
+    for logo_name in logo_path:
+        logo = Image.open(logo_name).convert("RGBA")
+        logo_name = logo_name.split("\\")[-1]
         size = logo.size
         canvas = quader(size[0], size[1])
         canvas = canvas.convert("RGBA")
@@ -96,7 +86,7 @@ def named_logo(logo_list: list):
     for name in names:
         args = name.split(" ")
         print(args)
-        text = assets.add_letters_until_number(args).lstrip().rstrip()
+        text = logo_handler.add_letters_until_number(args).lstrip().rstrip()
         for arg in reversed(args):
             font_size = 200
             try:
@@ -147,14 +137,14 @@ def named_logo(logo_list: list):
 
             # combined = Image.alpha_composite(logo, overlay)
             # todo: error if there are special chars in the name --> check for name_string
-            filename = assets.file_checker(f"finished_logos/{logo_list[int(arg) - 1].split("\\")[-1][:-4]} {text}.png")
+            filename = logo_handler.file_checker(f"finished_logos/{logo_list[int(arg) - 1].split("\\")[-1][:-4]} {text}.png")
             combined.save(filename, format="PNG")
 
 
 if __name__ == '__main__':
     canvas_wh = (2084, 300)  # (4167, 800)
 
-    if not assets.path_creation():
+    if not logo_handler.path_creation():
         print(f"error while path creating")
         exit()
     Auswahl = input(f"1=Watermark, 2=Namensgebung: ")

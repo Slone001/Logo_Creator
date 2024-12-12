@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/season_logo.css') }}">
+    <title>Upload Logo</title>
+</head>
+<body>
+    <h1>Drag-and-Drop Logo Upload</h1>
+
+    <!-- Drag-and-Drop Upload Area -->
+    <div class="upload-area" id="upload-area">
+        <p>Drag and drop Logo, oder <span id="upload-btn">klicken zum Upload</span></p>
+        <input type="file" id="file-input" accept="image/*" multiple>
+    </div>
+
+    <!-- Preview Images -->
+    <div id="preview"></div>
+
+    <script src="{{ url_for('static', filename='js/upload.js') }}"></script>
+</body>
+</html>

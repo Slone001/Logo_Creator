@@ -156,3 +156,5 @@ if __name__ == '__main__':
         if len(sys.argv) > 1:
             logos = sys.argv[1:]
             named_logo(logos)
+    if Auswahl == "3":
+        logo_handler.change_logo_color()

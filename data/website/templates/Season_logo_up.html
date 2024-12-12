@@ -1,12 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/season_logo.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <title>Upload Logo</title>
 </head>
 <body>
-    <h1>Drag-and-Drop Logo Upload</h1>
+    <div class="header-container">
+        <a href="{{ url_for('main.index') }}" class="logo">
+            <img src="{{ url_for('static', filename='img/FL_logo.png') }}" alt="Logo">
+        </a>
+
+        <h1>Drag-and-Drop Logo Upload</h1>
+    </div>
+
 
     <!-- Drag-and-Drop Upload Area -->
     <div class="upload-area" id="upload-area">

@@ -1,0 +1,56 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Upload Area */
+.upload-area {
+    border: 2px dashed #007bff;
+    border-radius: 10px;
+    padding: 20px;
+    cursor: pointer;
+    width: 60%;
+    margin: 0 auto;
+    transition: background-color 0.3s ease;
+}
+
+.upload-area:hover {
+    background-color: #f8f9fa;
+}
+
+.upload-area p {
+    margin: 0;
+    font-size: 16px;
+    color: #007bff;
+}
+
+.upload-area span {
+    color: #0056b3;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* Hidden File Input */
+#file-input {
+    display: none;
+}
+
+/* Image Preview */
+#preview {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+#preview img {
+    max-width: 150px;
+    max-height: 150px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}

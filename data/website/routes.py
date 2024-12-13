@@ -32,7 +32,7 @@ def upload_file():
     saved_files = []
     for file in files:
         if file and file.filename != '':
-            filepath = os.path.join("static/uploads", file.filename)
+            filepath = os.path.join("blueprint_logos/", file.filename)
             file.save(filepath)
             saved_files.append(filepath)
 

@@ -22,8 +22,14 @@
         <input type="file" id="file-input" accept="image/*" multiple>
     </div>
 
-    <!-- Preview Images -->
+    <form>
+        <br><label for="season_name">Season: </label><label for="season_name"></label><input type="text" id="season_name" name="season_name"><br>
+    </form>
+
+
+    <button id="upload-con" class="upload-con">Upload</button>
     <div id="preview"></div>
+
 
     <script src="{{ url_for('static', filename='js/upload.js') }}"></script>
 </body>

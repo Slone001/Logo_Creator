@@ -2,8 +2,19 @@
 body {
     font-family: Arial, sans-serif;
     margin: 0;
+    gap: 5px;
     padding: 20px;
     text-align: center;
+    background: #2a2f38;
+    color: white;
+}
+
+a:visited{
+    color: #3492eb;
+}
+
+a:link{
+    color: #3492eb;
 }
 
 
@@ -13,10 +24,9 @@ body {
     display: block;               /* Use flexbox for alignment */
     align-items: center;         /* Center vertically */
     justify-content: center;     /* Initially center everything */
-    background-color: #f9f9f9;   /* Optional: Add background for header */
+    background-color: #2a2f38;   /* Optional: Add background for header */
     padding: 20px;               /* Space around content */
     position: relative;          /* Allow positioning of the logo */
-    ;
 }
 
 /* Logo styling */
@@ -29,12 +39,11 @@ body {
 
 .logo img {
     height: 100px;                /* Adjust logo size */
-                     /* Maintain aspect ratio */
 }
 
 /* H1 Styling */
 .header-container h1 {
-    color: brown;
+    color: #FF1C3A;
     margin: 0;                   /* Remove default margins */
     text-align: center;
 

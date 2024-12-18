@@ -81,7 +81,7 @@ def named_logo(logo_list: list):
         Image_list.append(Image.open(logoname).convert("RGBA"))
         count += 1
     del count
-    names = input("Name von Member und dahinter mit Doppeltpunkt die Nummern von den Logos, bsp: Slone 1 3,:\n")
+    names = input("Name von Member und dahinter mit Doppelpunkt die Nummern von den Logos, bsp: Slone 1 3,:\n")
     names = names.rstrip().lstrip().split(',')
     for name in names:
         args = name.split(" ")

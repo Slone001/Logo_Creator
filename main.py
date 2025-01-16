@@ -66,7 +66,7 @@ def quader(canvas_width, canvas_height, text: str = "Nimm mich!", font_size: int
     return canvas
 
 
-def named_logo(logo_list: list):
+def named_logo(logo_list: list[str] | str):
     # todo: logo text outsourcing in other func
     # todo: add multithreading
     text_y = 200  # position y, position x will be calculated automatically
@@ -75,12 +75,15 @@ def named_logo(logo_list: list):
     angle = 45
     Image_list: list[Image] = []
     logo: Image
-
-    for logoname in logo_list:
-        print(f"{count} {logoname.split("\\")[-1]}")
-        Image_list.append(Image.open(logoname).convert("RGBA"))
-        count += 1
-    del count
+    if type(logo_list) == str:
+        print(f"{count} {logo_list.split("\\")[-1]}")
+        Image_list.append(Image.open(logo_list).convert("RGBA"))
+    else:
+        for logo_name in logo_list:
+            print(f"{count} {logo_name.split("\\")[-1]}")
+            Image_list.append(Image.open(logo_name).convert("RGBA"))
+            count += 1
+        del count
     names = input("Name von Member und dahinter mit Doppelpunkt die Nummern von den Logos, bsp: Slone 1 3,:\n")
     names = names.rstrip().lstrip().split(',')
     for name in names:
@@ -137,7 +140,8 @@ def named_logo(logo_list: list):
 
             # combined = Image.alpha_composite(logo, overlay)
             # todo: error if there are special chars in the name --> check for name_string
-            filename = logo_handler.file_checker(f"finished_logos/{logo_list[int(arg) - 1].split("\\")[-1][:-4]} {text}.png")
+            filename = logo_handler.file_checker(
+                f"finished_logos/{logo_list[int(arg) - 1].split("\\")[-1][:-4]} {text}.png")
             combined.save(filename, format="PNG")
 
 

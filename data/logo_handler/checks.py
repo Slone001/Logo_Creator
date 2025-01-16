@@ -43,6 +43,7 @@ def add_letters_until_number(elements):
 
 
 def idk():
+    # Check if needed for future project
     shadow = Image.new("RGBA", logo.size, (0, 0, 0, 0))
     shadow_draw = ImageDraw.Draw(shadow)
 

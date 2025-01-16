@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/img_config.css') }}">
+    <title>Logo-Creator</title>
+</head>
+<body>
+    <div class="header-container">
+        <a href="{{ url_for('main.index') }}" class="logo">
+            <img src="{{ url_for('static', filename='img/FL_logo.png') }}" alt="Logo">
+        </a>
+        <h1>Logo-Creator</h1>
+    </div>
+
+    <div class="input-field">
+        <form id="dataForm" method="post">
+            <div class="input-field-row">
+                <label for="angle">Winkel:</label>
+                <input type="number" id="angle" name="angle"><br>
+            </div>
+            <div class="input-field-row">
+                <label for="distance">Distanz:</label>
+                <input type="number" id="distance" name="distance"><br>
+            </div>
+            <button id="CheckImageStatus" type="submit">Submit</button>
+        </form>
+    </div>
+    <div id="imageContainer" class="image-container">
+        <p>Loading image...</p>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/img_config.js') }}"></script>
+
+</body>
+</html>

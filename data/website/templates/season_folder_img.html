@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/logo_img.css') }}">
+    <title>Logo-Creator</title>
+</head>
+<body>
+    <div class="header-container">
+        <a href="{{ url_for('main.index') }}" class="logo">
+            <img src="{{ url_for('static', filename='img/FL_logo.png') }}" alt="Logo">
+        </a>
+        <h1>Logo-Creator</h1>
+    </div>
+
+    <div class="logo_img">
+        {% for img in images %}
+            <a href="/season/{{ folder_name }}/{{ img }}">
+                <img class="season-image" src="{{ url_for('main.blueprint_logo', folder_name=folder_name, filename=img) }}" alt="Season Image">
+            </a>
+        {% endfor %}
+    </div>
+</body>
+</html>

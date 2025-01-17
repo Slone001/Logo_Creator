@@ -41,27 +41,3 @@ def add_letters_until_number(elements):
 
     return result
 
-
-def idk():
-    # Check if needed for future project
-    shadow = Image.new("RGBA", logo.size, (0, 0, 0, 0))
-    shadow_draw = ImageDraw.Draw(shadow)
-
-    # Draw the shadow as solid black below the text
-    shadow_y = text_y + text_height + 5  # Shadow starts below the text
-    shadow_height = 20  # Height of the shadow gradient
-    max_alpha = 192
-
-    for i in range(shadow_height):
-        alpha = int(max_alpha * (1 - i / shadow_height))  # Gradually reduce opacity
-        shadow_draw.rectangle(
-            [text_x, shadow_y + i, text_x + text_width, shadow_y + i + 1],
-            fill=(0, 0, 0, alpha)
-        )
-
-    # Blur the shadow for a smoother effect
-    shadow = shadow.filter(ImageFilter.GaussianBlur(5))
-
-
-
-

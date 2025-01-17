@@ -1,7 +1,9 @@
 from flask import Blueprint, render_template, request, send_from_directory, jsonify, url_for, Response
 import os
-import functions
+import data.website.functions as functions
 from data import logo_handler as lh
+
+# todo: upload website-images
 
 bp = Blueprint('main', __name__)
 ImageQue = lh.imageQue
@@ -24,13 +26,11 @@ def Season_logo():
 def season_folder_page(folder_name):
     folder_path = os.path.join(os.getcwd(), "blueprint_logos", folder_name)
     if not os.path.exists(folder_path) or not os.path.isdir(folder_path):
-        return "Ordner nicht gefunden", 404
+        return render_template("400.html",reason="Folder not found")
 
     images = os.listdir(folder_path)
     image_list = []
-    print(images)
     for image in images:
-        print(image)
         if image.rstrip().endswith(".png"):
             image_list.append(image)
     return render_template("season_folder_img.html", folder_name=folder_name, images=image_list)
@@ -38,7 +38,7 @@ def season_folder_page(folder_name):
 
 # check if needed
 @bp.route('/blueprint_logos/<folder_name>/<filename>')
-def blueprint_logo(folder_name, filename: str):
+def blueprint_logo_serve(folder_name, filename: str):
     folder_path = os.path.join(os.getcwd(), "blueprint_logos", folder_name)
     if not os.path.exists(folder_path) or not os.path.isdir(folder_path):
         return 404
@@ -56,14 +56,13 @@ def Season_logo_upload():
 @bp.route('/upload', methods=['POST'])
 def upload_file():
     season_dir = request.form.get("season_name", "")
-
     season_dir = season_dir.replace(" ", "_").replace("-", "_").replace("/", "")
 
     try:
         if not os.path.exists(season_dir):
             os.mkdir(f"blueprint_logos/{season_dir}")
     except FileExistsError:
-        return "Ordner kann ich erstellt werden", 403
+        return "Ordner kann ich erstellt werden", 400
 
     files = request.files.getlist("files[]")
 
@@ -87,11 +86,10 @@ def upload_file():
 # route for html page image-configuration
 @bp.route('/season/<folder>/<img>')
 def season_logo_config(folder, img):
-    # todo: fix bug, if img endswith .png new config will be created
     if not img.endswith(".png"):
-        return render_template("404.html"), 404
+        return render_template("error_page.html", code=403, reason_code="Zugriff verweigert"), 403
     if not os.path.exists(f"blueprint_logos/{folder}"):
-        return render_template("404.html"), 404
+        return render_template("error_page.html", reason="Folder not found"), 404
     if not os.path.exists(f"blueprint_logos/{folder}/preview/{img}"):
         functions.image_generation(folder, img)
     return render_template("img_config.html")
@@ -104,11 +102,10 @@ def season_logo_config_reload(folder, img):
         angle = int(request.form["angle"])
         distance = int(request.form["distance"])
     except Exception as e:
-        # todo: New Error page
-        return render_template("404.html"), 404
+        return render_template("400.html", reason="Value Error"), 400
     data = [distance, angle]
     if angle == 0 or distance == 0:
-        return render_template("404.html"), 404
+        return render_template("400.html", reason="Values cant be 0"), 400
     functions.save_img_con(folder, img, data)
     functions.image_generation(folder, img)
     return season_logo_config(folder, img)
@@ -131,7 +128,3 @@ def serve_preview(folder, image_name):
     else:
         return "Image not found", 404
 
-
-@bp.errorhandler(404)
-def page_not_found(e):
-    return render_template("404.html"), 404

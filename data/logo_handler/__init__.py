@@ -7,6 +7,7 @@ from .logo_handling import preview, logo_gen, imageQue
 class logo_handler:
 
     size = 200
-    font_path = "F:/Programmieren/python/FruchtLabor/Logo-Creator/data/files/Hitmo2.0-Bold.ttf"
+    #font_path = "F:/Programmieren/python/FruchtLabor/Logo-Creator/data/files/Hitmo2.0-Bold.ttf"
+    font_path = "C:/Programmieren/Fruchtlabor/Logo_Creator/data/files/Hitmo2.0-Bold.ttf"
     t_high = 1720
 

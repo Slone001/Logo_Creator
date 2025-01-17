@@ -34,7 +34,7 @@ def save_img_con(folder: str, img: str, data: list[int]) -> bool:
         config = {"distance": data[0], "angle": data[1]}
         with open(path, "w") as file:
             json.dump(config, file)
-        image_generation(folder, img, config)
+        image_generation(folder, img)
         return True
     except Exception as e:
         logger = logging.getLogger(__name__)
@@ -59,5 +59,5 @@ def image_generation(folder: str, img: str) -> None:
 
 
 if __name__ == "__main__":
-    image_generation("season1", "Slone001 Fruchtlabor.png", {"distance": 20, "angle": 45})
+    image_generation("season1", "Slone001 Fruchtlabor.png")
 

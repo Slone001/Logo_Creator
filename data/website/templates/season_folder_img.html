@@ -17,9 +17,28 @@
     <div class="logo_img">
         {% for img in images %}
             <a href="/season/{{ folder_name }}/{{ img }}">
-                <img class="season-image" src="{{ url_for('main.blueprint_logo', folder_name=folder_name, filename=img) }}" alt="Season Image">
+                <img class="season-image" src="{{ url_for('main.blueprint_logo_serve', folder_name=folder_name, filename=img) }}" alt="Season Image">
             </a>
         {% endfor %}
     </div>
+    <div class="name_form">
+        <form id="Name_Input" method="POST">
+            <div class="name_form-row_namen">
+                <label for="names">Namen</label>
+                <input type="text" id="names" name="names">
+            </div>
+            <div class="name_form-row">
+                <label for="seperator">Trennzeichen: </label>
+                <input type="text" id="seperator" name="seperator"><br>
+            </div>
+            <button id="bt_send_names" type="submit">Submit</button>
+        </form>
+    </div>
+
+<script>
+
+
+
+</script>
 </body>
 </html>

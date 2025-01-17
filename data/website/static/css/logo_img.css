@@ -17,3 +17,45 @@
 .season-image:hover {
     transform: scale(1.1);
 }
+
+.name_form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 1%;
+}
+
+.name_form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.name_form-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.name_form-row label {
+    width: 40%;
+    margin-right: 10px;
+    text-align: right;
+}
+
+
+.name_form-row_namen {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.name_form-row_namen label {
+    width: 20%;
+    margin-right: 10px;
+    text-align: right;
+}
+
+.name_form-row_namen input {
+    width: 100%;
+    padding-top: 1%;
+}
